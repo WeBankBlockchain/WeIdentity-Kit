@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.kit.constant.KitErrorCode;
 import com.webank.weid.kit.exception.EncodeSuiteException;
 import com.webank.wedpr.ecies.EciesResult;

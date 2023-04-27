@@ -2,7 +2,7 @@
 
 package com.webank.weid.kit.transportation.impl;
 
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.kit.constant.KitErrorCode;
 import com.webank.weid.kit.exception.ProtocolSuiteException;
 import com.webank.weid.exception.WeIdBaseException;
