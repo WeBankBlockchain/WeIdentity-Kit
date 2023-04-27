@@ -55,7 +55,7 @@ public class DownTransDataService extends InnerService implements TransmissionSe
         logger.info("[getCodeData] begin query data param:{}", arg);
         ResponseData<String> codeDataRes = new ResponseData<String>();
         codeDataRes.setResult(StringUtils.EMPTY);
-        com.webank.weid.protocol.response.ResponseData<String> responseData = this.getDataDriver().get(
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> responseData = this.getDataDriver().get(
             DataDriverConstant.DOMAIN_RESOURCE_INFO, arg.getResourceId());
         // 数据查询出错
         if (responseData.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
@@ -122,7 +122,7 @@ public class DownTransDataService extends InnerService implements TransmissionSe
     private GetEncryptKeyResponse getEncryptKey(GetTransDataArgs arg) {
         logger.info("[getEncryptKey] begin query encrypt key param:{}", arg);
         GetEncryptKeyResponse encryptResponse = new GetEncryptKeyResponse();
-        com.webank.weid.protocol.response.ResponseData<String> keyResponse = this.getDataDriver().get(
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> keyResponse = this.getDataDriver().get(
             DataDriverConstant.DOMAIN_ENCRYPTKEY, arg.getResourceId());
         if (keyResponse.getErrorCode().intValue() == KitErrorCode.SUCCESS.getCode()
             && StringUtils.isBlank(keyResponse.getResult())) {
@@ -188,7 +188,7 @@ public class DownTransDataService extends InnerService implements TransmissionSe
             return false;
         }
         // 验证signValue
-        com.webank.weid.protocol.response.ResponseData<WeIdDocument> domRes = this.getWeIdService().getWeIdDocument(arg.getWeId());
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> domRes = this.getWeIdService().getWeIdDocument(arg.getWeId());
         if (domRes.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
             logger.error(
                 "[checkAuthority] can not get the WeIdDocument, this weid is {}.",
@@ -196,7 +196,7 @@ public class DownTransDataService extends InnerService implements TransmissionSe
             );
             return false;
         }
-        com.webank.weid.constant.ErrorCode errorCode = DataToolUtils.verifySignatureFromWeId(
+        com.webank.weid.blockchain.constant.ErrorCode errorCode = DataToolUtils.verifySignatureFromWeId(
             arg.getResourceId(),
             arg.getSignValue(),
             domRes.getResult(),

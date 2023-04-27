@@ -55,8 +55,8 @@ public class RequestVerifyChallengeCallbackWeId extends WeIdAmopCallback {
             return result;
         }
         String rawData = challenge.toJson();
-        ResponseData<WeIdDocument> weIdDocResp = weIdService.getWeIdDocument(weId);
-        com.webank.weid.constant.ErrorCode errorCode = DataToolUtils
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> weIdDocResp = weIdService.getWeIdDocument(weId);
+        com.webank.weid.blockchain.constant.ErrorCode errorCode = DataToolUtils
             .verifySignatureFromWeId(rawData, signData, weIdDocResp.getResult(), null);
         if (errorCode.getCode() != KitErrorCode.SUCCESS.getCode()) {
             logger.error("[RequestVerifyChallengeCallback] verify challenge signature failed.");

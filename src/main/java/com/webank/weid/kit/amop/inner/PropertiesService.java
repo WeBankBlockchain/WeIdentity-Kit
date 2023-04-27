@@ -242,7 +242,7 @@ public class PropertiesService extends InnerService {
 
     private Map<String, String> query() {
         Map<String, String> map = new HashMap<String, String>();
-        com.webank.weid.protocol.response.ResponseData<String> responseData = super.getDataDriver().get(DOMAIN, KEY);
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> responseData = super.getDataDriver().get(DOMAIN, KEY);
         if (StringUtils.isNotBlank(responseData.getResult())) {
             map = KitUtils.deserialize(responseData.getResult(), Map.class);
         }
@@ -259,7 +259,7 @@ public class PropertiesService extends InnerService {
 
     private boolean save(Map<String, String> data) {
         String value = KitUtils.serialize(data);
-        ResponseData<Integer> update = super.getDataDriver().addOrUpdate(DOMAIN, KEY, value);
+        com.webank.weid.blockchain.protocol.response.ResponseData<Integer> update = super.getDataDriver().addOrUpdate(DOMAIN, KEY, value);
         if (update.getErrorCode().intValue() == KitErrorCode.SUCCESS.getCode()) {
             return true;
         }
