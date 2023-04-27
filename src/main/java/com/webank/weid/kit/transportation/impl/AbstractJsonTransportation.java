@@ -57,13 +57,13 @@ public abstract class AbstractJsonTransportation
     );
     
     protected void saveTransData(String id, Object data) {
-        com.webank.weid.protocol.response.ResponseData<Integer> save = getDataDriver().add(
+        com.webank.weid.blockchain.protocol.response.ResponseData<Integer> save = getDataDriver().add(
             DataDriverConstant.DOMAIN_RESOURCE_INFO,
             id,
                 DataToolUtils.serialize(data)
         );
         if (save.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
-            throw new WeIdBaseException(com.webank.weid.constant.ErrorCode.getTypeByErrorCode(save.getErrorCode()));
+            throw new WeIdBaseException(com.webank.weid.blockchain.constant.ErrorCode.getTypeByErrorCode(save.getErrorCode()));
         }
     }
     

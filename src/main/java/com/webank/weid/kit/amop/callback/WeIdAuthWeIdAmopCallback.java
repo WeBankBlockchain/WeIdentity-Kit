@@ -59,7 +59,7 @@ public class WeIdAuthWeIdAmopCallback extends WeIdAmopCallback {
         );
         dataMap.put(ParamKeyConstant.WEID_AUTH_SIGN_DATA, challengeSign);
 
-        ResponseData<WeIdDocument> weIdDocResp = weIdService.getWeIdDocument(fromWeId);
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> weIdDocResp = weIdService.getWeIdDocument(fromWeId);
         if (weIdDocResp.getErrorCode() != KitErrorCode.SUCCESS.getCode()) {
             logger.error("[WeIdAuthCallback->onPush] get weid document by weid ->{} failed.",
                 fromWeId);
