@@ -131,7 +131,7 @@ public class WeIdAuthImpl implements WeIdAuth {
         WeIdAuthObj weIdAuthObj = DataToolUtils.deserialize(weidAuth, WeIdAuthObj.class);
         String challengeSignData = (String) dataMap.get(ParamKeyConstant.WEID_AUTH_SIGN_DATA);
         String rawData = challenge.toJson();
-        com.webank.weid.protocol.response.ResponseData<WeIdDocument> weIdDoc = weIdService.getWeIdDocument(weIdAuthObj.getSelfWeId());
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> weIdDoc = weIdService.getWeIdDocument(weIdAuthObj.getSelfWeId());
         Integer weidDocErrorCode = weIdDoc.getErrorCode();
         if (weidDocErrorCode != KitErrorCode.SUCCESS.getCode()) {
             logger
@@ -142,7 +142,7 @@ public class WeIdAuthImpl implements WeIdAuth {
                 KitErrorCode.getTypeByErrorCode(weidDocErrorCode));
         }
         WeIdDocument weIdDocument = weIdDoc.getResult();
-        com.webank.weid.constant.ErrorCode verifyErrorCode = DataToolUtils
+        com.webank.weid.blockchain.constant.ErrorCode verifyErrorCode = DataToolUtils
             .verifySignatureFromWeId(rawData, challengeSignData, weIdDocument, null);
         if (verifyErrorCode.getCode() != KitErrorCode.SUCCESS.getCode()) {
             return new ResponseData<WeIdAuthObj>(null, KitErrorCode.getTypeByErrorCode(verifyErrorCode.getCode()));
@@ -207,7 +207,7 @@ public class WeIdAuthImpl implements WeIdAuth {
 
         String challengeSignData = (String) dataMap.get(ParamKeyConstant.WEID_AUTH_SIGN_DATA);
         String rawData = challenge.toJson();
-        com.webank.weid.protocol.response.ResponseData<WeIdDocument> weIdDoc = weIdService.getWeIdDocument(weIdAuthObj.getSelfWeId());
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> weIdDoc = weIdService.getWeIdDocument(weIdAuthObj.getSelfWeId());
         Integer weidDocErrorCode = weIdDoc.getErrorCode();
         if (weidDocErrorCode != KitErrorCode.SUCCESS.getCode()) {
             logger
@@ -220,7 +220,7 @@ public class WeIdAuthImpl implements WeIdAuth {
         WeIdDocument weIdDocument = weIdDoc.getResult();
 
         //验证对手方对challenge的签名
-        com.webank.weid.constant.ErrorCode verifyErrorCode = DataToolUtils
+        com.webank.weid.blockchain.constant.ErrorCode verifyErrorCode = DataToolUtils
             .verifySignatureFromWeId(rawData, challengeSignData, weIdDocument, null);
         if (verifyErrorCode.getCode() != KitErrorCode.SUCCESS.getCode()) {
             return new ResponseData<WeIdAuthObj>(null, KitErrorCode.getTypeByErrorCode(verifyErrorCode.getCode()));
@@ -275,7 +275,7 @@ public class WeIdAuthImpl implements WeIdAuth {
 
         String weIdAuthData = DataToolUtils.serialize(weIdAuthObj);
         String channelId = weIdAuthObj.getChannelId();
-        com.webank.weid.protocol.response.ResponseData<Integer> dbResp = getDataDriver().addOrUpdate(
+        com.webank.weid.blockchain.protocol.response.ResponseData<Integer> dbResp = getDataDriver().addOrUpdate(
             DataDriverConstant.DOMAIN_WEID_AUTH,
             channelId,
             weIdAuthData);
@@ -296,7 +296,7 @@ public class WeIdAuthImpl implements WeIdAuth {
     @Override
     public WeIdAuthObj getWeIdAuthObjByChannelId(String channelId) {
 
-        com.webank.weid.protocol.response.ResponseData<String> dbResp = getDataDriver().get(
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> dbResp = getDataDriver().get(
             DataDriverConstant.DOMAIN_WEID_AUTH,
             channelId);
         Integer errorCode = dbResp.getErrorCode();

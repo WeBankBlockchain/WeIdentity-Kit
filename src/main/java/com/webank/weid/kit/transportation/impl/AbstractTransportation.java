@@ -7,11 +7,11 @@ import com.webank.weid.kit.auth.WeIdAuthCallback;
 import com.webank.weid.kit.auth.WeIdAuthImpl;
 import com.webank.weid.kit.auth.WeIdAuthObj;
 import com.webank.weid.kit.constant.KitErrorCode;
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.exception.WeIdBaseException;
 import com.webank.weid.kit.transportation.entity.ProtocolProperty;
 import com.webank.weid.protocol.base.WeIdAuthentication;
-import com.webank.weid.protocol.response.ResponseData;
+import com.webank.weid.blockchain.protocol.response.ResponseData;
 import com.webank.weid.service.impl.WeIdServiceImpl;
 import com.webank.weid.service.rpc.WeIdService;
 import com.webank.weid.suite.persistence.Persistence;
@@ -118,7 +118,7 @@ public abstract class AbstractTransportation {
                 weIdAuthentication.getWeId())) {
             return KitErrorCode.WEID_PRIVATEKEY_DOES_NOT_MATCH;
         }
-        com.webank.weid.protocol.response.ResponseData<Boolean> isExists = weidService.isWeIdExist(weIdAuthentication.getWeId());
+        com.webank.weid.blockchain.protocol.response.ResponseData<Boolean> isExists = weidService.isWeIdExist(weIdAuthentication.getWeId());
         if (!isExists.getResult()) {
             return KitErrorCode.WEID_DOES_NOT_EXIST;
         }

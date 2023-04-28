@@ -57,7 +57,7 @@ public class OffLineBatchTask {
         if (!StringUtils.isBlank(secretKey)) {
             return secretKey;
         } else {
-            com.webank.weid.protocol.response.ResponseData<String> dbResp = getDataDriver().get(DataDriverConstant.DOMAIN_ENCRYPTKEY,
+            com.webank.weid.blockchain.protocol.response.ResponseData<String> dbResp = getDataDriver().get(DataDriverConstant.DOMAIN_ENCRYPTKEY,
                 PropertyUtils.getProperty("blockchain.orgid"));
             Integer errorCode = dbResp.getErrorCode();
             if (errorCode != KitErrorCode.SUCCESS.getCode()) {
@@ -235,7 +235,7 @@ public class OffLineBatchTask {
         String privateKey = userKey.get(weId);
         if (privateKey == null) {
 
-            com.webank.weid.protocol.response.ResponseData<String> resp = getDataDriver().get("", weId);
+            com.webank.weid.blockchain.protocol.response.ResponseData<String> resp = getDataDriver().get("", weId);
             Integer dbErrorCode = resp.getErrorCode();
             if (dbErrorCode != KitErrorCode.SUCCESS.getCode()) {
                 return null;
