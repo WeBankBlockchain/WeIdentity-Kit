@@ -14,7 +14,7 @@ import com.webank.weid.constant.ParamKeyConstant;
 import com.webank.weid.constant.WeIdConstant;
 import com.webank.weid.kit.constant.KitErrorCode;
 import com.webank.weid.protocol.request.TransactionArgs;
-import com.webank.weid.protocol.response.ResponseData;
+import com.webank.weid.blockchain.protocol.response.ResponseData;
 import com.webank.weid.suite.persistence.Persistence;
 import com.webank.weid.suite.persistence.PersistenceFactory;
 import com.webank.weid.suite.persistence.PersistenceType;
@@ -106,7 +106,7 @@ public class BatchTransactionUtils {
         if (!StringUtils.isBlank(secretKey)) {
             return secretKey;
         } else {
-            com.webank.weid.protocol.response.ResponseData<String> dbResp = getDataDriver().get(DataDriverConstant.DOMAIN_ENCRYPTKEY,
+            com.webank.weid.blockchain.protocol.response.ResponseData<String> dbResp = getDataDriver().get(DataDriverConstant.DOMAIN_ENCRYPTKEY,
                 PropertyUtils.getProperty("blockchain.orgid"));
             Integer errorCode = dbResp.getErrorCode();
             if (errorCode != KitErrorCode.SUCCESS.getCode()) {

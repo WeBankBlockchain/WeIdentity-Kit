@@ -3,7 +3,7 @@
 package com.webank.weid.kit.transportation.encode;
 
 import com.webank.weid.constant.DataDriverConstant;
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.constant.ParamKeyConstant;
 import com.webank.weid.exception.DataTypeCastException;
 import com.webank.weid.kit.constant.KitErrorCode;
@@ -80,7 +80,7 @@ public class CipherEncodeProcessor implements EncodeProcessor {
                     .encrypt(encodeData.getData(), key);
 
             //保存秘钥
-            com.webank.weid.protocol.response.ResponseData<Integer> response = this.getDataDriver().add(
+            com.webank.weid.blockchain.protocol.response.ResponseData<Integer> response = this.getDataDriver().add(
                 DataDriverConstant.DOMAIN_ENCRYPTKEY, encodeData.getId(), saveData);
             if (response.getErrorCode() != ErrorCode.SUCCESS.getCode()) {
                 throw new EncodeSuiteException(
@@ -134,7 +134,7 @@ public class CipherEncodeProcessor implements EncodeProcessor {
         if (com.webank.weid.blockchain.service.fisco.BaseServiceFisco.fiscoConfig.getAmopId().equals(encodeData.getAmopId())) {
             logger.info("get Encrypt Key from DB.");
             //保存秘钥
-            com.webank.weid.protocol.response.ResponseData<String> response =
+            com.webank.weid.blockchain.protocol.response.ResponseData<String> response =
                 this.getDataDriver().get(DataDriverConstant.DOMAIN_ENCRYPTKEY, encodeData.getId());
             if (response.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
                 throw new EncodeSuiteException(
