@@ -2,7 +2,7 @@
 
 package com.webank.weid.kit.exception;
 
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.exception.WeIdBaseException;
 import com.webank.weid.kit.constant.KitErrorCode;
 

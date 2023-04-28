@@ -3,7 +3,7 @@
 package com.webank.weid.kit.transportation.impl;
 
 import com.webank.weid.constant.CredentialConstant;
-import com.webank.weid.constant.ErrorCode;
+import com.webank.weid.blockchain.constant.ErrorCode;
 import com.webank.weid.exception.WeIdBaseException;
 import com.webank.weid.kit.constant.KitErrorCode;
 import com.webank.weid.protocol.inf.JsonSerializer;
@@ -581,7 +581,7 @@ public class PdfTransportationImpl
             for (int i = 0;i < creListSize; i++) {
                 //利用cptId到链上获取CPT
                 Integer cptId = credentialPojoList.get(i).getCptId();
-                com.webank.weid.protocol.response.ResponseData<Cpt> res = cptService.queryCpt(cptId);
+                com.webank.weid.blockchain.protocol.response.ResponseData<Cpt> res = cptService.queryCpt(cptId);
                 Cpt cpt = res.getResult();
                 Map<String, Object> cptMap = cpt.getCptJsonSchema();
                 Map<String, Object> propMap = new HashMap<>(3);
@@ -1125,7 +1125,7 @@ public class PdfTransportationImpl
 
             //利用cptId到链上获取CPT
             Integer cptId = cre.getCptId();
-            com.webank.weid.protocol.response.ResponseData<Cpt> res = cptService.queryCpt(cptId);
+            com.webank.weid.blockchain.protocol.response.ResponseData<Cpt> res = cptService.queryCpt(cptId);
             Cpt cpt = res.getResult();
             Map<String, Object> cptMap = cpt.getCptJsonSchema();
             Map<String, Object> propMap;

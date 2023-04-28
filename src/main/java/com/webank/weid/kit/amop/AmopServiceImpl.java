@@ -273,7 +273,7 @@ public class AmopServiceImpl implements AmopService {
         PolicyAndPreCredential policyAndPreCredential = args.getPolicyAndPreCredential();
         String claimJson = args.getClaim();
         CredentialPojo preCredential = policyAndPreCredential.getPreCredential();
-        com.webank.weid.protocol.response.ResponseData<CredentialPojo> userCredentialResp =
+        com.webank.weid.blockchain.protocol.response.ResponseData<CredentialPojo> userCredentialResp =
                 credentialPojoService.prepareZkpCredential(
                         preCredential,
                         claimJson,
@@ -384,7 +384,7 @@ public class AmopServiceImpl implements AmopService {
         credentialList.add(userCredential);
 
         //put pre-credential and user-credential(based on CPT 111)
-        com.webank.weid.protocol.response.ResponseData<com.webank.weid.protocol.base.PresentationE> presentationResp =
+        com.webank.weid.blockchain.protocol.response.ResponseData<com.webank.weid.protocol.base.PresentationE> presentationResp =
                 credentialPojoService.createPresentation(
                         credentialList,
                         policyAndChallenge.getPresentationPolicyE(),
@@ -413,11 +413,11 @@ public class AmopServiceImpl implements AmopService {
         }
 
         Integer cptId = credentialPojo.getCptId();
-        com.webank.weid.protocol.response.ResponseData<CredentialTemplateEntity> resp1 = cptService.queryCredentialTemplate(cptId);
+        com.webank.weid.blockchain.protocol.response.ResponseData<CredentialTemplateEntity> resp1 = cptService.queryCredentialTemplate(cptId);
         CredentialTemplateEntity template = resp1.getResult();
         String id = new StringBuffer().append(userId).append("_").append(cptId)
                 .toString();
-        com.webank.weid.protocol.response.ResponseData<String> dbResp = getDataDriver()
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> dbResp = getDataDriver()
                 .get(DataDriverConstant.DOMAIN_USER_MASTER_SECRET, id);
         if (dbResp.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
             throw new DatabaseException("database error!");
@@ -440,7 +440,7 @@ public class AmopServiceImpl implements AmopService {
         //String dbKey = (String) preCredential.getClaim()
         //   .get(CredentialConstant.CREDENTIAL_META_KEY_ID);
         String dbKey = credentialPojo.getId();
-        com.webank.weid.protocol.response.ResponseData<Integer> dbResponse =
+        com.webank.weid.blockchain.protocol.response.ResponseData<Integer> dbResponse =
                 getDataDriver().addOrUpdate(
                         DataDriverConstant.DOMAIN_USER_CREDENTIAL_SIGNATURE,
                         dbKey,
