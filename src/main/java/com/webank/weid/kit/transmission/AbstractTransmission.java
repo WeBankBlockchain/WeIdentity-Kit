@@ -52,7 +52,7 @@ public abstract class AbstractTransmission implements Transmission {
             logger.error("[AbstractTransmission.auth] auth fail:{}-{}.",
                 authResponse.getErrorCode(),
                 authResponse.getErrorMessage());
-            throw new WeIdBaseException(com.webank.weid.constant.ErrorCode.getTypeByErrorCode(authResponse.getErrorCode()));
+            throw new WeIdBaseException(com.webank.weid.blockchain.constant.ErrorCode.getTypeByErrorCode(authResponse.getErrorCode()));
         }
         logger.info("[AbstractTransmission.auth] auth the transmission successfully.");
         WeIdAuthObj weIdAuth = authResponse.getResult();

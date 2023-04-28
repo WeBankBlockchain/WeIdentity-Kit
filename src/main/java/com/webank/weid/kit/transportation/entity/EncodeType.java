@@ -47,6 +47,6 @@ public enum EncodeType {
                 return codeType;
             }
         }
-        throw new WeIdBaseException(com.webank.weid.constant.ErrorCode.TRANSPORTATION_PROTOCOL_ENCODE_ERROR);
+        throw new WeIdBaseException(com.webank.weid.blockchain.constant.ErrorCode.TRANSPORTATION_PROTOCOL_ENCODE_ERROR);
     }
 }
