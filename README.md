@@ -10,7 +10,8 @@ WeIdentity-Kit
 
 | weid-kit 版本 | weid-java-sdk 版本 |weid-blockchain 版本 | weid-contract-java 版本 | 备注 |
 | :---- | :---- | :---- | :---- | :---- |
-| v3.0.0-rc.1 | v3.0.0-rc.1 | v3.0.0-rc.1 | v1.3.1-rc1 | 从原来weid-java-sdk分离出来的WeIdentity的扩展工具箱 |
+| v3.0.0-rc.1 | v3.0.0-rc.1 | v3.0.0-rc.1 | v1.3.1-rc.1 | 从原来weid-java-sdk分离出来的WeIdentity的扩展工具箱 |
+| v3.1.0-rc.1 | v3.1.0-rc.1 | v3.1.0-rc.1 | v1.3.2-rc.1 | 适配WeIdentity-Java-SDK v3.1.0-rc.1 |
 * WeIdentity及其组件的[兼容版本说明文档](https://weidentity.readthedocs.io/zh_CN/develop/docs/compatibility.html) 请查看！
 联系我们
 --------

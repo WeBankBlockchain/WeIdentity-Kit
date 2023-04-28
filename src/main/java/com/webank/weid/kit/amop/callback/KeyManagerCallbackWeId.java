@@ -62,7 +62,7 @@ public class KeyManagerCallbackWeId extends WeIdAmopCallback {
     public GetEncryptKeyResponse onPush(GetEncryptKeyArgs arg) {
         logger.info("[KeyManagerCallback.onPush] begin query key param:{}", arg);
         GetEncryptKeyResponse encryptResponse = new GetEncryptKeyResponse();
-        ResponseData<String> keyResponse = this.getDataDriver().get(
+        com.webank.weid.blockchain.protocol.response.ResponseData<String> keyResponse = this.getDataDriver().get(
                 DataDriverConstant.DOMAIN_ENCRYPTKEY, arg.getKeyId());
         if (keyResponse.getErrorCode().intValue() == KitErrorCode.SUCCESS.getCode()
                 && StringUtils.isBlank(keyResponse.getResult())) {
@@ -123,7 +123,7 @@ public class KeyManagerCallbackWeId extends WeIdAmopCallback {
             return false;
         }
         // 验证signValue
-        com.webank.weid.protocol.response.ResponseData<WeIdDocument> domRes = this.getWeIdService().getWeIdDocument(arg.getWeId());
+        com.webank.weid.blockchain.protocol.response.ResponseData<WeIdDocument> domRes = this.getWeIdService().getWeIdDocument(arg.getWeId());
         if (domRes.getErrorCode().intValue() != KitErrorCode.SUCCESS.getCode()) {
             logger.info(
                     "[checkAuthority] can not get the WeIdDocument, this weid is {}.",
@@ -131,7 +131,7 @@ public class KeyManagerCallbackWeId extends WeIdAmopCallback {
             );
             return false;
         }
-        com.webank.weid.constant.ErrorCode errorCode = DataToolUtils.verifySignatureFromWeId(
+        com.webank.weid.blockchain.constant.ErrorCode errorCode = DataToolUtils.verifySignatureFromWeId(
                 arg.getKeyId(),
                 arg.getSignValue(),
                 domRes.getResult(),
