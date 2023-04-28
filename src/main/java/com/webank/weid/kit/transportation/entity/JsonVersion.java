@@ -35,6 +35,6 @@ public enum JsonVersion {
                 return version;
             }
         }
-        throw new WeIdBaseException(com.webank.weid.constant.ErrorCode.TRANSPORTATION_PROTOCOL_VERSION_ERROR);
+        throw new WeIdBaseException(com.webank.weid.blockchain.constant.ErrorCode.TRANSPORTATION_PROTOCOL_VERSION_ERROR);
     }
 }
